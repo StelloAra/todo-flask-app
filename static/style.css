@@ -1,0 +1,94 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form button {
+  padding: 10px;
+  border: none;
+  background: #4caf50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.task span {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete {
+  text-decoration: none;
+  color: red;
+  margin-left: 10px;
+}
+/* 🌙 DARK MODE */
+
+body.dark {
+  background: #121212;
+  color: white;
+}
+
+body.dark .container {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark input {
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #444;
+}
+
+body.dark button {
+  background: #333;
+}
+
+body.dark .task {
+  border-bottom: 1px solid #333;
+}
+
+body.dark .delete {
+  color: #ff6b6b;
+}

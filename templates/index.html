@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do App</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <button id="theme-toggle">🌙 Dark mode</button>
+      <h1>📝 Min To-Do Lista</h1>
+
+      <form action="/add" method="post" class="form">
+        <input type="text" name="title" placeholder="Ny uppgift..." required />
+        <button type="submit">Lägg till</button>
+      </form>
+
+      <div class="tasks">
+        {% for task in tasks %}
+        <div class="task">
+          <form action="/toggle/{{ task[0] }}" method="post">
+            <input
+              type="checkbox"
+              onChange="this.form.submit()"
+              {%
+              if
+              task[2]
+              %}checked{%
+              endif
+              %}
+            />
+          </form>
+
+          <span class="{% if task[2] %}done{% endif %}"> {{ task[1] }} </span>
+
+          <a href="/delete/{{ task[0] }}" class="delete">🗑</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+
+      // ladda sparat tema
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+
+        if (document.body.classList.contains("dark")) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      });
+    </script>
+  </body>
+</html>
