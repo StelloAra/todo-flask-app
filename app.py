@@ -59,6 +59,7 @@ def delete_task(task_id):
 
 @app.route("/")
 def home():
+    init_db()  # 👈 lägg till denna
     tasks = get_tasks()
     return render_template("index.html", tasks=tasks)
 
