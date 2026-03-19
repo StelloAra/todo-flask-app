@@ -2,6 +2,21 @@ from flask import Flask, request, redirect, render_template
 import sqlite3
 import os
 
+def init_db():
+    conn = sqlite3.connect("todo.db")
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        done INTEGER DEFAULT 0
+    )
+    """)
+    
+    conn.commit()
+    conn.close()
+
 app = Flask(__name__)
 
 def connect():
@@ -65,4 +80,5 @@ def delete(task_id):
     return redirect("/")
 
 if __name__ == "__main__":
+    init_db()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
